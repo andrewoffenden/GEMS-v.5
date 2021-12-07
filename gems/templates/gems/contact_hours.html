@@ -1,0 +1,29 @@
+{% extends 'gems/report_base.html' %}
+
+{% block container %}
+    <h1 class="w3-panel w3-xlarge w3-theme-d3">Contact hours for {{classroom}} <br> Between the dates: {{date_from}} and {{date_to}}</h1>
+    {% for hour, students in hours.items %}
+        <h5 class="w3-panel w3-theme-d1">Contact hours for the hour: {{hour}}</h5>
+        {% if not students %}
+            <span class="w3-small"> No contact hours for this hour in the indicated range of dates.</span>
+        {% else %}
+            <table class="w3-table-all w3-small" id="gems_report_table">
+                <tr class="w3-theme-d1">
+                    <th onclick="w3.sortHTML('#gems_report_table','.item', 'td:nth-child(1)')" style="cursor:pointer">IDOC</th>
+                    <th onclick="w3.sortHTML('#gems_report_table','.item', 'td:nth-child(2)')" style="cursor:pointer">Lastname</th>
+                    <th>Firstname</th>
+                    <th onclick="w3.sortHTML('#gems_report_table','.item', \td:nth-child(4)')" style="cursor:pointer">Contact Hours for {{hour}}</th>
+                </tr>
+            {% for student in students %}
+                <tr class="item">
+                    <td>{{student.IDOC}}</td>
+                    <td>{{student.last_name}}</td>
+                    <td>{{student.first_name}}</td>
+                    <td>{{student.contact_hours}}</td>
+                </tr>
+            {% endfor %}
+            </table>
+        {% endif %}
+    {% endfor %}
+
+{% endblock %}

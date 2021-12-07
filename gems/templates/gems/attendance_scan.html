@@ -1,0 +1,22 @@
+{% extends 'gems/report_base.html' %}
+
+{% block container %}
+    <h1 class="w3-panel w3-xlarge w3-theme-d3">The following students have not scanned for {{classroom}} <br> From: {{date_from}}  To: {{date_to}}</h1>
+    
+    <table class="w3-table-all w3-small" id="gems_report_table">
+        <tr class="w3-theme-d1">
+            <th>IDOC</th>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Classroom</th>
+        </tr>
+        {% for student in attendance %}
+            <tr>
+                <td>{{student.IDOC}}</td>
+                <td>{{student.last_name}}</td>
+                <td>{{student.first_name}}</td>
+                <td>{{student.classroom}}</td>
+        {% endfor %}
+    </table>
+
+{% endblock %}

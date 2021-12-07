@@ -1,0 +1,143 @@
+{% extends 'gems/base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+{% load static %}
+    <!--Nav bar-->
+    <div class="w3-top">
+        <div id="gems_nav_bar" class="w3-bar w3-theme-d5 w3-left-align " >
+            <a class="w3-bar-item w3-button" href=""><i class="fa fa-home"></i></a>
+            <!--div class="w3-bar-item w3-button w3-theme-d3" style=" margin-left:35%"><i class="fa fa-search"></i></div-->
+            <input type="text" id="gems_search_user" class="w3-bar-item w3-input w3-left" style="margin-left:38%;" onkeyup="if(event.keyCode === 13) {gems_controller.initGemsRequest(GemsReqStudentSearch)}"  placeholder="Search for a Student...">
+            <a href="#" class="w3-bar-item w3-theme-d3 w3-button w3-left "  onclick="gems_controller.initGemsRequest(GemsReqStudentSearch)" >Go</a>
+            <div class="w3-bar-item w3-hide-small w3-hide-medium w3-right">Global Education Management System</div>
+    
+        </div>
+    </div>
+    <!--Page Container-->
+    <div class="w3-container w3-content" style="max-width:1400px;margin-top:65px">
+        <div class="w3-row">
+            <!--Left Column-->
+            <div class="w3-col m2">
+                <!--User information card-->
+                <div class="w3-card-2 w3-round w3-theme-l5" >
+                        <div class="w3-container w3-center" id="gems_profile_div">
+                            <h4>{{ user.first_name}} {{user.last_name}}</h4>
+                            {% if user.usersetting.avatar %}
+                                <img src="{% static user.usersetting.avatar_static_file %}" id="gems_avatar" class="w3-circle" style="height:125px;width:125px;" alt="Avatar">
+                            {% else %}
+                                <img src="{% static "gems/img/avatar/avatar1.png"%}" id="gems_avatar" class="w3-circle" style="height:50%;width:50%;" alt="Avatar">
+                            {% endif %}
+                            <h4 style="font-size:16px">User: {{user.username}}<h4>
+                        </div>
+                        <div class="w3-theme-d3 w3-container w3-center">
+                            <i class="fa fa-sign-out w3-margin-right"></i>
+                            <a id="gems_logout" href="logout">Logout</a>
+                        </div>
+                </div><br>
+                <!--div class="w3-card-2 w3-round w3-margin-bottom">      
+					<button class="w3-button w3-block w3-theme-d3 w3-center" onclick="">Gems Tools</button>
+				</div--> 
+                <div class="w3-card-2 w3-round">
+					<div id="gems_my_information_flip" onclick="">
+                        <button class="w3-button w3-block w3-theme-d3 w3-left-align" onclick="$('#gems_my_information_panel').slideToggle();"><i class="fa fa-user-circle-o w3-margin-right"></i>My Information</button>
+                    </div>
+                    <div id="gems_my_information_panel" class="panel" style="display:none;">
+                        <button class="w3-button w3-block w3-left-align" onclick="gems_controller.initGemsRequest(GemsReqUserTimesheet)">My Time Card</button>
+						<button class="w3-button w3-block w3-left-align" onclick="gems_controller.initGemsRequest(GemsReqDisplayUserTimesheet,{'user_id':{{user.id}}})">Print My Time Card</button>
+						<button class="w3-button w3-block w3-left-align" onclick="gems_controller.initGemsRequest(GemsReqUserChangePassword)">Change My Password</button>
+                        <button class="w3-button w3-block w3-left-align" onclick="gems_controller.initGemsRequest(GemsReqUserChangeTheme)">Change My Theme</button>
+                        <button class="w3-button w3-block w3-left-align" onclick="gems_controller.initGemsRequest(GemsReqUserChangeAvatar)">Change My Picture</button>
+                    </div>
+				</div> 
+                <div class="w3-card-2 w3-round">
+					<div id="gems_student_management_flip" onclick="">
+                        <button class="w3-button w3-block w3-theme-d3 w3-left-align" onclick="$('#gems_student_management_panel').slideToggle();"><i class="fa fa-book w3-margin-right"></i>Student Management</button>
+                    </div>
+                    <div id="gems_student_management_panel" class="panel" style="display:none;">
+                        <button class="w3-button w3-block w3-left-align " onclick="gems_controller.initGemsRequest(GemsReqAddStudent)">Add Student</button>
+                        <button class="w3-button w3-block w3-left-align "onclick="gems_controller.initGemsRequest(GemsReqEditStudentSearch)">Edit Student</button>
+                        {% if perms.gems.delete_student %}
+                        <button class="w3-button w3-block w3-left-align " onclick="gems_controller.initGemsRequest(GemsReqDelStudentSearch)">Delete Student</button>
+                        {% endif %}
+						<button class="w3-button w3-block w3-left-align" onclick="gems_controller.initGemsRequest(GemsReqEnterStudentBarcodes)">Print Student Barcode</button>
+                    </div>
+				</div>
+                <div class="w3-card-2 w3-round">
+					<div id="gems_attendance_flip" onclick="">
+                        <button class="w3-button w3-block w3-theme-d3 w3-left-align" onclick="$('#gems_attendance_panel').slideToggle();"><i class="fa fa-clock-o w3-margin-right"></i>Attendance</button>
+                    </div>
+                    <div id="gems_attendance_panel" class="panel" style="display:none;">
+                        <button class="w3-button w3-block w3-left-align " onclick= "gems_controller.initGemsRequest(GemsReqWebAttendance)">Daily Attendance</button>
+						<button class="w3-button w3-block w3-left-align" onclick="gems_controller.initGemsRequest(GemsReqManualAttendance)">Manually Add</button>
+						<button class="w3-button w3-block w3-left-align" onclick="gems_controller.initGemsRequest(GemsReqDisplayDailyAttendance)">Display Daily</button>
+                        <button class="w3-button w3-block w3-left-align" onclick="gems_controller.initGemsRequest(GemsReqDisplayIndividualAttendance)">Student History</button>
+                    </div>
+				</div> 
+                <div class="w3-card-2 w3-round">
+                    <div id="gems_items_flip" onclick=";$('#gems_items_panel').slideToggle();">
+                        <button class="w3-button w3-block w3-theme-d3 w3-left-align" onclick=""><i class="fa fa-edit w3-margin-right"></i>Educational Assets</button>
+                    </div>
+                    <div id="gems_items_panel" class="panel" style="display:none;">
+						<button class="w3-button w3-block w3-left-align" onclick="gems_controller.initGemsRequest(GemsReqManageEducationalAssets)">Manage Assets</button>
+                        <button class="w3-button w3-block w3-left-align " onclick="gems_controller.initGemsRequest(GemsReqQuickCheckin)">Check-in</button>
+                        <button class="w3-button w3-block w3-left-align" onclick="gems_controller.initGemsRequest(GemsReqEnterAssetBarcodes)">Print Barcodes</button>
+                    </div>
+				</div> 
+                <div class="w3-card-2 w3-round">
+					<div id="gems_reports_flip" onclick="$('#gems_reports_panel').slideToggle();">
+                        <button class="w3-button w3-block w3-theme-d3 w3-left-align" onclick="gems_controller.initGemsRequest(GemsReqDisplayReports)"><i class="fa fa-bars w3-margin-right"></i>Reports</button>
+                    </div>
+                    <div id="gems_reports_panel" class="panel" style="display:none;">
+                        <!--add content as needed-->
+                    </div>
+				</div>
+                {% if perms.gems.can_view_admin_panel %}
+                    <div class="w3-card-2 w3-round">
+                        <div id="gems_administration_flip" onclick="$('#gems_administration_panel').slideToggle();">
+                            <button class="w3-button w3-block w3-theme-d3 w3-left-align" onclick=""><i class="fa fa-expeditedssl w3-margin-right"></i>Administration</button>
+                        </div>
+                        <div id="gems_administration_panel" class="panel" style="display:none;">
+                            <div id="gems_user_admin_flip" onclick="$('#gems_user_admin_panel').slideToggle();">
+                                <button class="w3-button w3-block w3-left-align w3-theme-d1" onclick="">User Administration</button> 
+                            </div>
+                            <div id="gems_user_admin_panel" class="panel" style="display:none;">
+                                <button class="w3-button w3-block w3-left-align " onclick="gems_controller.initGemsRequest(GemsReqAdminAddUser)">Add User</button>
+                                <button class="w3-button w3-block w3-left-align" onclick="gems_controller.initGemsRequest(GemsReqEditUserSearch)">Edit User</button>
+                                {% if perms.auth.delete_user %}
+                                    <button class="w3-button w3-block w3-left-align" onclick="gems_controller.initGemsRequest(GemsReqDelUserSearch)">Delete User</button>
+                                {% endif %}
+                                <button class="w3-button w3-block w3-left-align" onclick="gems_controller.initGemsRequest(GemsReqResetPasswordSearch)">Reset Password</button>
+                            </div>
+                            <div id="gems_test_admin_flip" onclick="$('#gems_test_admin_panel').slideToggle();">
+                                <button class="w3-button w3-block w3-left-align w3-theme-d1 " onclick="">Test Administration</button> 
+                            </div>
+                            <div id="gems_test_admin_panel" class="panel" style="display:none;">
+                                <button class="w3-button w3-block w3-left-align " onclick="gems_controller.initGemsRequest(GemsReqAdminTestManagement)">Add/Edit Tests</button>
+                                <button class="w3-button w3-block w3-left-align" onclick="">Manage Certificates</button>
+                            </div>  
+                            <div id="gems_class_admin_flip" onclick="$('#gems_class_admin_panel').slideToggle();">
+                                <button class="w3-button w3-block w3-left-align w3-theme-d1 " onclick="">Class Administration</button> 
+                            </div>
+                            <div id="gems_class_admin_panel" class="panel" style="display:none;">
+                                <button class="w3-button w3-block w3-left-align " onclick="gems_controller.initGemsRequest(GemsReqAdminClassTSManagement)">Schedule Classes</button>
+                                <button class="w3-button w3-block w3-left-align" onclick="gems_controller.initGemsRequest(GemsReqAdminClassManagement)">Add/Edit Classes</button>
+                                <button class="w3-button w3-block w3-left-align" onclick="gems_controller.initGemsRequest(GemsReqAdminSubjectManagement)">Add/Edit Subject</button>
+                            </div>
+                        </div>
+                    </div> 
+                {% endif %}
+            </div>
+            <!--Right Column-->
+            <div class="w3-col m9">
+                <div id="gems_main_div" class="w3-margin-left">
+             
+                </div>        
+            </div>
+        </div>
+    </div>
+{% else %}
+    <p>Please log in!</p>
+    <a href="login">Login</a>
+{% endif %}
+{% endblock %}

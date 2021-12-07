@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<HTML lang="en">
+
+    <HEAD>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title> {% block title %} {% if site_name %} {{site_name}}  {% else %} Global Education Management System V.5 {% endif %} {% endblock %} </title> 
+        {% load static %}
+        <link rel="stylesheet" href={% static "gems/css/w3pro.css" %}>
+        <link rel="stylesheet" href={% static "gems/css/gems4.css" %}>
+        {% if user.usersetting.theme %} <link rel="stylesheet" href="{% static user.usersetting.theme_static_file %}"
+        {% else %}  <link  rel="stylesheet" href={% static "gems/css/themes/w3-theme-grey.css" %}>
+        {% endif %}
+        <!--TODO:: user theme load-->
+        <link rel="stylesheet" href={% static "gems/css/font-awesome-4.7.0/css/font-awesome.min.css" %}>
+        <script src={% static "gems/jquery/jquery-3.2.1.min.js" %}></script>
+        <script src={% static "gems/js/w3.js" %}></script>
+        <script src={% static "gems/js/gems_lib.js" %}></script>
+        <script src={% static "gems/js/gems_modal_view.js" %}></script>
+        <script src={% static "gems/js/gems_report_view.js" %}></script>
+        <script src={% static "gems/js/gems_request_controller.js" %}></script>
+        <script src={% static "gems/js/gems_XHR_controller.js" %}></script>
+        <script src={% static "gems/js/gems_ww_controller.js" %}></script>
+        <script src={% static "gems/js/gems_ww_reports.js" %}></script>
+    </HEAD>
+    <BODY class="w3-theme-l4">
+        <main>
+            {% block content %}
+            
+            {% endblock %}
+        </main>
+    </BODY>
+        {% block script %}
+            <script>
+                /*
+                    this initiates the gems_controller which manages callbacks by instantiating members of the required class,
+                    collecting them in a map, and removing them when their reclaim flag is set to true.  Which is when the
+                    process has closed.
+                */
+                gems_controller = new GemsRequestController(reclaim_requests=true);
+            </script>
+        {% endblock %}
+</HTML>
+

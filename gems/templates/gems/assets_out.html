@@ -1,0 +1,30 @@
+{% extends 'gems/report_base.html' %}
+
+{% block container %}
+    <h1 class="w3-panel w3-xxlarge w3-theme-d3">Current {{category}}'s out for {{classroom}}</h1>
+    <h5>Sort this table by clicking on the row which you would like the table to be sorted on.</h3>
+    <table class="w3-table-all" id="gems_report_table">
+        <tr class="w3-theme-d1">
+            <th onclick="w3.sortHTML('#gems_report_table','.item', 'td:nth-child(1)')" >IDOC</th>
+            <th onclick="w3.sortHTML('#gems_report_table','.item', 'td:nth-child(2)')">Last Name</th>
+            <th onclick="w3.sortHTML('#gems_report_table','.item', 'td:nth-child(3)')">Housing Unit</th>
+            <th>Barcode</th>
+            <th onclick="w3.sortHTML('#gems_report_table','.item', 'td:nth-child(5)')">Title</th>
+            <th onclick="w3.sortHTML('#gems_report_table','.item', 'td:nth-child(6)')">Classroom</th>
+            <th onclick="w3.sortHTML('#gems_report_table','.item', 'td:nth-child(7)')">Checkout Date</th>
+            <th>Due Date</th>
+        </tr>
+        {% for record in records %}
+            <tr class=" w3-small item">
+                <td>{{record.IDOC}}</td>
+                <td>{{record.last_name}}</td>
+                <td>{{record.housing_unit}}</td>
+                <td>{{record.barcode}}</td>
+                <td>{{record.name}}</td>
+                <td>{{record.classroom}}</td>
+                <td>{{record.checkout_date}}</td>
+                <td>{{record.due_date}}</td>
+        {% endfor %}
+    </table>
+
+{% endblock %}

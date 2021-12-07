@@ -1,0 +1,74 @@
+{% extends 'gems/base.html' %}
+
+{% block title %}  
+    Global Education Management System v.5 - Web Attendance
+{% endblock %}
+
+
+{% block content %}
+
+<div class="w3-panel w3-theme-l1 w3-center">
+    <h1>{{school_name}} Attendance</h1>
+</div>
+
+<div class="w3-cell-row " style="margin-top:32px;">
+    <div class="w3-cell  " style="width:60%">
+        <div class="w3-card w3-center w3-margin">
+            <!-- display class that attendance is being recorded for -->
+            <div class="w3-theme-d3 w3-padding w3-panel w3-large w3-content"> Taking attendance for: {{classroom}} on {{day_name}}</div>
+            <br>
+            <!-- clock -->
+            <div  class="w3-content" style="margin-top:32px;"><h3 id="clock" class="w3-theme-l1 w3-xxxlarge  w3-round-xlarge w3-opacity" style="padding:16px 32px;display:inline"></h3></div>
+            <br>
+            <!--label and input for the student's IDOC-->
+            <div class="w3-content  w3-border" style="width:33%;display:block;margin:32px auto">
+                <label class="w3-theme-d2 w3-padding w3-large " style="display:block;">Please Scan your ID</label><br>
+                <input class="w3-input w3-center gems_user_input" id="gems_web_attend_IDOC" data-key="IDOC" max-length="6" autocomplete="off" required style=" margin:16px auto" onkeyup="if (event.keyCode===13) {gems_controller.initGemsRequest(GemsReqAddAttendanceRecord)}"></input>
+                <input class="gems_user_input" type="hidden" data-key="classroom" value="{{classroom.id}}"></input>
+                <input class="gems_user_input" type="hidden" data-key="day"  value="{{day}}"></input>
+                <br>
+            </div>
+            <br>
+        </div>
+        
+    </div>
+    <div class="w3-cell" style="width:30%">
+        <div class="w3-card w3-center w3-margin"  >
+            <div class="w3-theme-d3 w3-padding w3-panel w3-large w3-content"> Attendance Table</div>
+            <div id="gems_web_attend_message" class="w3-content">
+            </div>
+            <div id="gems_web_attend_table" class="w3-content">
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function incrementTime(date_object, target) 
+    {
+        //get focus of clock input
+        if (date_object instanceof Date) {
+                date_object.setSeconds(date_object.getSeconds() + 1);
+            }
+        document.getElementById(target).innerHTML = date_object.toTimeString().slice(0,8);
+    }
+    function startTime() 
+    {
+        //create date object once and use incrementTime to increment that date/time.
+        let today = new Date();
+        let target = "clock";
+
+        var clock = setInterval(incrementTime, 1000, today, target);
+    }
+    
+    //starts clock.  function in gems_lib.js.
+    document.addEventListener("DOMContentLoaded", startTime);
+    
+    /*
+        start web worker for hourly attendance table below. Web worker updates table based on all attendance with enrollment records matching class_timeslot, day, and hour.
+        Hour is updated in the web_worker script when ran.  The day and class_timeslot remain the same throughout.
+    */
+    var gemsWW = new GemsWWController();
+    gemsWW.registerEvent("gems_web_attend_table", '../../static/gems/js/gems_ww_web_attendance.js', {"classroom":"{{classroom.id}}","day":"{{day}}"});
+    
+</script>
+{% endblock %}

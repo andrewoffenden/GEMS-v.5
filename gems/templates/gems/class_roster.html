@@ -1,0 +1,16 @@
+{% extends 'gems/report_base.html' %}
+
+
+
+{% block container %}
+        {% for hour,roster in class_roster.items %}
+            <h1 class="w3-panel w3-theme-d3">Class Roster for: {{hour}}</h1>
+            <table class="w3-table-all w3-small">
+                <tr class="w3-theme-d1"><th>IDOC</th><th>Last Name</th><th>First Name</th><th>Subject</th><th>Classroom</th><th>Days</th></tr>
+                {% for record in roster %}
+                    <tr><td>{{record.IDOC}}</td><td>{{record.last_name}}</td><td>{{record.first_name}}</td><td>{{record.subject}}</td><td>{{record.classroom}}</td><td>{{record.days}}</td></tr>
+                {% endfor %}
+            </table>
+            
+        {% endfor %}
+{% endblock %}

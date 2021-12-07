@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<HTML lang="en">
+{% comment %} {% extends 'gems/base.html' %} {% endcomment %}
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{{site_name}}</title>
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href={% static "gems/css/timecard.css" %}>
+	<script src={% static "gems/jquery/jquery-3.2.1.min.js" %}></script>
+    <script src={% static "gems/js/w3.js" %}></script>
+    <script src={% static "gems/js/gems_lib.js" %}></script>
+	<script>
+		function updateTotalPay() {	
+			let total_pay = {{total_hours}} * {{user.employee.payRate}};
+			let e = document.getElementById("total_pay");
+
+			e.innerText = total_pay.toPrecision(4);
+		}
+	</script>
+</head>	
+<body onload="updateTotalPay()">
+	<!-- Place TA Information In The Appropriate Places. -->
+	<div class="headbox">
+		<h1 class="title">IDAHO DEPARTMENT OF CORRECTION <br> OFFENDER TIMESHEET</h1>
+		<h1 class="note">The offender is responsible for keeping this document current and correct.</h1>
+		<h2 class="info">Offender's Name:</h2><h2 class="info">{{user.first_name}} {{user.last_name}}<hr class="name" /></h2>
+		<h2 class="info">Job Catagory:</h2><h2 class="info">Education TA<hr class="job" /></h2><br>
+		<h2 class="info">IDOC#:</h2><h2 class="info">{{user.username}}<hr class="idoc" /></h2>
+		<h2 class="info">Hourly Pay:</h2><h2 class="info">{{user.employee.payRate}}<hr class="hpay" /></h2>
+		<h2 class="info">Total Hours:</h2><h2 class="info">{{total_hours}}<hr class="thours" /></h2><br>
+		<h2 class="info">Total Pay:</h2><h2 id="total_pay" class="info"><hr class="tpay" /></h2>
+	</div>
+		
+<table>
+    <tr></tr><th width="200px">Date</th><th width="100px">AM In</th><th width="100px">AM Out</th><th width="100px">PM In</th><th width="100px">PM Out</th><th width="100px">Hours</th></tr>
+    {% for entry in timesheet_entries %}
+        <tr>
+            <td>{{entry.entryDate}}</td>
+            <td>{{entry.timeInAM}}</td>
+            <td>{{entry.timeOutAM}}</td>
+            <td>{{entry.timeInPM}}</td>
+            <td>{{entry.timeOutPM}}</td>
+            <td>{{entry.hours}}</td>
+        </tr>
+    {% endfor %}
+</table>
+<div class="footbox">
+		<h2 class="signature">Offender's Signature:</h2><h2 class="signature"><hr class="signature" /></h2>
+		<h2 class="signature">IDOC #:</h2><h2 class="signature"><hr class="sidoc" /></h2><br>
+		<h2 class="signature">Work Supervisor's Signature:</h2><h2 class="signature"><hr class="wssignature" /></h2>
+		<h2 class="signature">Associate #:</h2><h2 class="signature"><hr class="sstaff" /></h2><br>
+		<h2 class="signature">Work Area Supervisor's Signature:</h2><h2 class="signature" /><hr class="ssignature"></h2>
+		<h2 class="signature">Associate #:</h2><h2 class="signature"><hr class="sstaff" /></h2><br>
+		<h2 class="signature">Comments:</h2><h2 class="signature"><hr class="comments" /></h2><br>
+		<h2 class="signature"><hr class="pageend" /></h2><br>
+		
+	</div>
+</body>

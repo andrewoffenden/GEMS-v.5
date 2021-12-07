@@ -1,0 +1,54 @@
+@font-face
+{
+	font-family: barcode;
+	src: url(fonts/barcode.ttf)
+}
+
+div#gemsLogin {
+	padding-top:200px; display: block; 
+	background-size:100% 100%;
+	background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../img/Horizon.jpg");
+}
+a#gems_logout {
+	display:inline-block;
+	padding: 8px;
+}
+a:link 
+{
+	text-decoration:none;
+}
+h4
+{
+	opacity:0.85;
+	font-size:18px;
+}
+button	
+{
+	width: 175px;
+}
+img#gems_rjs_logo 
+{
+	box-shadow: 1px 1px 5px #444;
+	opacity: .55;
+	width:150px;
+	height:100px;
+}
+.gems-checkbox-container
+{
+	line-height:2.5em;
+	border-radius:5px;
+}
+.gems-checkbox-on
+{
+	margin-top:10px;
+	color:#555;
+	box-shadow: 1px 1px 1px;
+	border-radius:100%;
+}
+.gems-checkbox-off
+{
+	margin-top:10px;
+	color: #777;
+	box-shadow: 1px 1px 1px;
+	border-radius:100%;
+}

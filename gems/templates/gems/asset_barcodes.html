@@ -1,0 +1,14 @@
+{% extends 'gems/base.html' %}
+
+{% block title %} Print Educational Asset Barcodes {% endblock %}
+
+{% block content %}
+    <div class="w3-panel w3-theme-l1 w3-center">
+        <h1>Print Educational Asset Barcodes </h1>
+    </div>
+    <div class="w3-row w3-margin w3-margin-left">
+        {% for barcode in barcodes %}
+            <div class="w3-col m2 w3-margin w3-padding-64" style="font-family:barcode">{{barcode}}</div>
+        {% endfor %}
+    </div>
+{% endblock %}

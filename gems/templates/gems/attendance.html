@@ -1,0 +1,24 @@
+{% extends 'gems/report_base.html' %}
+
+{% block container %}
+    <h1 class="w3-panel w3-theme-d3">Attendance report for {{class}} on {{date}} at {{hour}}</h1>
+    <table id="gems_report_table " class="w3-table-all w3-small">
+        <tr class="w3-theme-d1">
+            <th onclick="w3.sortHTML('#gems_report_table','.item','td:nth-child(1)')">IDOC</th>
+            <th onclick="w3.sortHTML('#gems_report_table','.item','td:nth-child(2)')">Last Name</th>
+            <th>First Name</th>
+            <th onclick="w3.sortHTML('#gems_report_table','.item','td:nth-child(4)')">Scan Date</th>
+            <th onclick="w3.sortHTML('#gems_report_table','.item','td:nth-child(5)')">Scan Time</th>
+            <th onclick="w3.sortHTML('#gems_report_table','.item','td:nth-child(6)')">Class</th>
+        </tr>
+        {% for student in attendance %}
+            <tr class="item">
+                <td >{{student.IDOC}}</td>
+                <td >{{student.last_name}}</td>
+                <td >{{student.first_name}}</td>
+                <td >{{student.scan_date}}</td>
+                <td >{{student.scan_time}}</td>
+                <td >{{student.class}}</td>
+        {% endfor %}
+    </table>
+{% endblock %}

@@ -1,0 +1,323 @@
+@font-face
+{
+font-family:barcode;
+src:url(fonts/barcode.ttf);
+}
+
+p
+{
+background-color:#FFFFFF;
+font-size:20px;
+text-align:center;
+font-family:"Times New Roman", Times, serif;
+}
+
+body
+{
+background-color:#FFFFFF;
+font-size:20px;
+text-align:center;
+font-family:"Times New Roman", Times, serif;
+}
+
+h1
+{
+background-color:#FFFFFF;
+font-size:50px;
+font-weight:lighter;
+text-align:center;
+font-family:"Ariel", Ariel, sans;
+color:#000000;
+margin: 1px 1px 1px 1px;
+}
+
+h1.title
+{
+background-color:#FFFFFF;
+font-size:16px;
+text-align:center;
+font-weight:bold;
+font-family:"Times New Roman", Times, serif;
+color:#000000;
+margin-top:10px;
+}
+
+h1.note
+{
+background-color:#FFFFFF;
+font-size:14px;
+text-align:center;
+font-weight:lighter;
+font-family:"Times New Roman", Times, serif;
+color:#000000;
+border-style:solid;
+border-width:1px;
+border-color:grey;
+margin:14px 1px 16px 1px;
+}
+
+h2
+{
+font-size:40px;
+text-align:center;
+}
+
+h2.info
+{
+background-color:#FFFFFF;
+font-size:14px;
+text-align:left;
+font-weight:bold;
+font-family:"Times New Roman", Times, serif;
+color:#000000;
+float:left;
+margin:2px 8px 1px 1px;
+}
+
+h2.signature
+{
+background-color:#FFFFFF;
+font-size:14px;
+text-align:center;
+font-weight:lighter;
+font-family:"Times New Roman", Times, serif;
+color:#000000;
+float:left;
+margin: 10px 2px 1px 1px;
+}
+
+hr.signature
+{
+height:1px;
+width:384px;
+margin-top:12px;
+}
+
+hr.wssignature
+{
+height:1px;
+width:340px;
+margin-top:12px;
+}
+
+hr.ssignature
+{
+height:1px;
+width:310px;
+margin-top:12px;
+}
+
+hr.sidoc
+{
+height:1px;
+width:100px;
+margin-top:12px;
+}
+
+hr.sstaff
+{
+height:1px;
+width:80px;
+margin-top:12px;
+}
+
+hr.comments
+{
+height:1px;
+width:600px;
+margin-top:12px;
+}
+
+hr.pageend
+{
+height:1px;
+width:706px;
+border-color:black;
+border-style:solid;
+}
+
+hr.name
+{
+height:1px;
+width:280px;
+margin: 1px 1px 1px 1px;
+}
+
+hr.job
+{
+height:1px;
+width:160px;
+margin: 1px 1px 1px 1px;
+}
+
+hr.idoc
+{
+height:1px;
+width:140px;
+margin: 1px 1px 1px 1px;
+}
+
+hr.hpay
+{
+height:1px;
+width:120px;
+margin: 1px 1px 1px 1px;
+}
+
+hr.thours
+{
+height:1px;
+width:120px;
+margin: 1px 1px 1px 1px;
+}
+
+hr.tpay
+{
+height:1px;
+width:140px;
+margin: 1px 1px 1px 1px;
+}
+
+h3
+{
+font-size:30px;
+text-align:center;
+}
+
+h4
+{
+font-size:16px;
+text-align:center;
+color:#000000;
+font-family:"Times New Roman", Times, serif;
+}
+
+h5
+{
+font-size:18px;
+text-align:center;
+color:#000000;
+font-family:"Times New Roman", Times, serif;
+}
+
+h6
+{
+font-size:18px;
+text-align:center;
+font-family:"Ariel", Ariel, sans;
+}
+
+footer
+{
+text-align:center;
+}
+
+a 
+{
+text-align:center;
+font-family:"Times New Roman", Times, serif;
+}
+
+.center
+{
+margin-left:auto;
+margin-right:auto;
+width:70%;
+}
+
+div.headbox
+{
+box-sizing:border-box;
+border-style:none;
+border-width:2px;
+border-color:grey;
+width:706px;
+height:170px;
+float:center;
+text-align:center;
+vertical-align:middle;
+font-family:"Times New Roman", Times, serif;
+margin: 1px 1px 1px 1px;
+}
+
+div.centerbox
+{
+box-sizing:border-box;
+border-style:none;
+border-width:2px;
+border-color:black;
+width:706px;
+height:620px;
+float:center;
+text-align:center;
+vertical-align:middle;
+font-family:"Times New Roman", Times, serif;
+margin: 1px 1px 1px 1px;
+}
+
+div.footbox
+{
+box-sizing:border-box;
+border-style:none;
+border-width:2px;
+border-color:grey;
+width:706px;
+height:122px;
+float:center;
+text-align:center;
+vertical-align:middle;
+font-family:"Times New Roman", Times, serif;
+margin: 1px 1px 1px 1px;
+}
+
+table
+{
+border-style:none;
+border-width:1px;
+border-color:white;
+text-align:center;
+vertical-align:middle;
+font-family:"Times New Roman", Times, serif;
+font-size:12px;
+font-weight:lighter;
+margin: 1px 1px 1px 1px;
+}
+
+tr
+{
+border-style:none;
+border-width:1px;
+border-color:white;
+text-align:center;
+vertical-align:middle;
+font-family:"Times New Roman", Times, serif;
+font-size:12px;
+font-weight:lighter;
+margin: 1px 1px 1px 1px;
+}
+
+th
+{
+border-style:solid;
+border-width:1px;
+border-color:black;
+text-align:center;
+vertical-align:middle;
+font-family:"Times New Roman", Times, serif;
+font-size:14px;
+font-weight:blod;
+margin: 1px 1px 1px 1px;
+}
+
+td
+{
+border-style:solid;
+border-width:1px;
+border-color:grey;
+text-align:center;
+vertical-align:middle;
+font-family:"Times New Roman", Times, serif;
+font-size:12px;
+font-weight:lighter;
+margin: 1px 1px 1px 1px;
+}
