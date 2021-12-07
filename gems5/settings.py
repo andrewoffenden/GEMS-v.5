@@ -25,7 +25,7 @@ SECRET_KEY = '&tggfjj_1h!6#-n3_-%ok(b7m-3tm$apnzru6)u#0hc)%@b!(y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['testserver','localhost','gems.isci.rjs','gems','vercel.app']
+ALLOWED_HOSTS = ['testserver','localhost','gems.isci.rjs','gems','vercel.app','rjs-zeta.vercel.app']
 
 
 # Application definition
