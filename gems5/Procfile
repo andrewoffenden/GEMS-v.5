@@ -1,0 +1,1 @@
+web: gunicorn gems5.wsgi --log-file -

@@ -25,7 +25,7 @@ SECRET_KEY = '&tggfjj_1h!6#-n3_-%ok(b7m-3tm$apnzru6)u#0hc)%@b!(y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['testserver','localhost','gems.isci.rjs','gems','vercel.app']
+ALLOWED_HOSTS = ['testserver','localhost','gems.isci.rjs','gems','vercel.app','rjs-zeta.vercel.app']
 
 
 # Application definition
@@ -75,12 +75,6 @@ WSGI_APPLICATION = 'gems5.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 
 
 # Password validation
